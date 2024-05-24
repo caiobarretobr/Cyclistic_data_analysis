@@ -1,9 +1,8 @@
 # Case study: How a bike sharing make a fast success being possible?
 This case study describes a scenario in which a junior data analyst needs to get insights that helps a company to increase the number of annual plan of bikes.
 
-<!--Essa parte ainda preciso descobrir se é necessária ou não -->
-<!--## Environment-->
-<!--For this scenario, i will be using [MySQL Shell] to query the bicycle datasets for exploring, combining and cleaning tasks and [RStudio](https://posit.co/download/rstudio-desktop/) for analysing, sharing and data visualization.-->
+## Environment
+For this scenario, i will be using MySQL at my linux terminal to query the bicycle datasets for exploring, combining and cleaning tasks and [RStudio](https://posit.co/download/rstudio-desktop/) for data visualization. At least, i looked at other's people case study for inspiration, one of these was this Github Repo: https://github.com/SomiaNasir/Google-Data-Analytics-Capstone-Cyclistic-Case-Study/blob/main/README.md#analyze-and-share
 
 ## Scenario
 The fictional company called Cyclistic has launched a succeed offer about bike sharing. Since then, the program increase to a 5,800 bicycles fleet with geografic traffic and almost 700 stations at Chicago. 
@@ -238,26 +237,24 @@ Again, no inconsistent values
 > Most of the values with empty stations has electric bikes consulting the following query, resulting on 437,734 rows with empty stations with electric bikes, missing 13 rows of the total rows with empty stations, meaning that i can delete this 13 rows, since the final goal of this data is to check the overview, so this only 13 rows will don't affect heavily the data. In contrast, i can't delete more than 400,000 rows just because it has empty stations, so i need somehow discover the name of each row station.
 
 * delete all rows with empty stations and classic bikes (13 rows):
-
     ```SQL
     DELETE * FROM 2023_divvy_tripdata WHERE start_station_name = "" AND rideable_type = "classic_bike";
     ```
 
-* For the rest of the 400,000  rows missing, one possible solution is to check for other columns with full and clean data, like `start_lat`, `end_lat`, `start_lng` and `end_lng`, and this is exactly what i did in this row, that shows me
-
-
+* For the rest of the 400,000  rows missing, one possible solution is to check for other columns with full and clean data, like `start_lat`, `end_lat`, `start_lng` and `end_lng`.
+    ```SQL
+    
+    ```
   
 ##### _An station with only the number 410_
-
-* When i check the following query to the table, it returns 6, referring to the number of rows with the start station name called "410", so it can be deleted
+* When i check the following query to the table, it returns only 6 rows, referring to the number of rows with the start station name called "410", so it can be deleted:
+    ```SQL
+    DELETE FROM 2023_divvy_tripdata WHERE start_station_name="410";
+    ```
 
 ##### Sixth: `start_station_id`
-
-
-#####: Seventh: `end_station_name`
-
----
-#####: Eigth: `end_station_id`
+##### Seventh: `end_station_name`
+##### Eigth: `end_station_id`
 
 ---
 `start_lat`
