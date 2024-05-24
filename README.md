@@ -2,7 +2,7 @@
 This case study describes a scenario in which a junior data analyst needs to get insights that helps a company to increase the number of annual plan of bikes.
 
 ## Environment
-For this scenario, i will be using MySQL at my linux terminal to query the bicycle datasets for exploring, combining and cleaning tasks and [RStudio](https://posit.co/download/rstudio-desktop/) for data visualization. At least, i looked at other's people case study for inspiration, one of these was this Github Repo: https://github.com/SomiaNasir/Google-Data-Analytics-Capstone-Cyclistic-Case-Study/blob/main/README.md#analyze-and-share
+For this scenario, i will be using MySQL at my linux terminal to query the bicycle datasets for exploring, combining and cleaning tasks and Tableau for data visualization. At least, i looked at other's people case study for inspiration, one of these was this Github Repo: https://github.com/SomiaNasir/Google-Data-Analytics-Capstone-Cyclistic-Case-Study/blob/main/README.md#analyze-and-share
 
 ## Scenario
 The fictional company called Cyclistic has launched a succeed offer about bike sharing. Since then, the program increase to a 5,800 bicycles fleet with geografic traffic and almost 700 stations at Chicago. 
