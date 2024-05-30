@@ -2,7 +2,9 @@
 This case study describes a scenario in which a junior data analyst needs to get insights that helps a company to increase the number of annual plan of bikes.
 
 ## Environment
-For this scenario, i will be using MySQL at my linux terminal to query the bicycle datasets for exploring, combining and cleaning tasks and Tableau for data visualization. At least, i looked at other's people case study for inspiration, one of these was this Github Repo: https://github.com/SomiaNasir/Google-Data-Analytics-Capstone-Cyclistic-Case-Study/blob/main/README.md#analyze-and-share
+For this scenario, i will be using MySQL at my linux terminal to query the bicycle datasets for exploring, combining and cleaning tasks and Tableau for data visualization. At least, i looked at other's people case study for inspiration, two of these are the following:
+- https://github.com/SomiaNasir/Google-Data-Analytics-Capstone-Cyclistic-Case-Study
+- https://github.com/vwainman/cyclistic-case-study
 
 ## Scenario
 The fictional company called Cyclistic has launched a succeed offer about bike sharing. Since then, the program increase to a 5,800 bicycles fleet with geografic traffic and almost 700 stations at Chicago. 
@@ -36,7 +38,7 @@ There are three questions that will guide the marketing program future:
 From that, there are some questions just to get oriented in what to do:
 
 What is the Data Source?
-: The goal is to explore 1 year of the Cyclistic bike riding dataset, in which the data source is stored in a [AWS S3 Bucket](https://divvy-tripdata.s3.amazonaws.com/index.html). At this moment, the data source has datasets about 2020 to 2024 feb. For preference, the datasets will be from January to december 2023. Each month represent one dataset including thousands of rows related to the columns: `ride_id`, `rideable_type`, `started_at`, `endend_at`, `start_station_name`, `start_station_id`, `end_station_name`, `end_station_id`, `start_lat`, `start_ing`, `end_lat` and `end_ing`.
+: The goal is to explore 1 year of the Cyclistic bike riding dataset, in which the data source is stored in a [AWS S3 Bucket](https://divvy-tripdata.s3.amazonaws.com/index.html). At this moment, the data source has datasets about 2020 to 2024 feb. Personally, i will choose the datasets from January of 2021 to December 2021. Each month represent one dataset including thousands of rows related to the columns: `ride_id`, `rideable_type`, `started_at`, `endend_at`, `start_station_name`, `start_station_id`, `end_station_name`, `end_station_id`, `start_lat`, `start_ing`, `end_lat` and `end_ing`.
 > Observation: The data source was provided by Motivate International Inc, under [This](https://divvybikes.com/data-license-agreement) License.
 
 How's my data organized?
@@ -50,14 +52,14 @@ mysql -u UserName -p
 
 2. Create and use a database:
 ```SQL
-create database 2023_divvy_tripdata; use 2023_divvy_tripdata;
+create database 2021_divvy_tripdata; use 2021_divvy_tripdata;
 ```
 
 3. Create 12 tables:
 > Access to full code [here](cyclistic_tables.sql)
 
 ```SQL
-CREATE TABLE 202301_divvy_tripdata (
+CREATE TABLE 202101_divvy_tripdata (
             ride_id TEXT NULL,
             rideable_type TEXT NULL,
             started_at TEXT NULL,
@@ -77,8 +79,8 @@ CREATE TABLE 202301_divvy_tripdata (
 4. Import 12 `.csv` files to its respective table:
 > Access to full code [here](cyclistic_import.sql)
 ```SQL
-LOAD DATA LOCAL INFILE '/path/to/your/file/202301-divvy-tripdata.csv'
-INTO TABLE 202301_divvy_tripdata 
+LOAD DATA LOCAL INFILE '/path/to/your/file/202101-divvy-tripdata.csv'
+INTO TABLE 202101_divvy_tripdata 
 FIELDS TERMINATED BY ',' 
 ENCLOSED BY '"' 
 LINES TERMINATED BY '\n' 
@@ -87,39 +89,11 @@ IGNORE 1 ROWS;
 
 5. Combining all tables into one
 > Access to full code [here](cyclistic_combining.sql)
-> For this case, i will use the `UNION ALL` statement for combining all 12 `divvy_tripdata` tables into a single one called `2023_divvy_tripdata` representing 1 year of data.
-```SQL
-CREATE TABLE `2023_divvy_tripdata` AS {
-   SELECT * FROM `202301_divvy_tripdata`
-   UNION ALL
-   SELECT * FROM `202302_divvy_tripdata`
-   UNION ALL
-   SELECT * FROM `202303_divvy_tripdata`
-   UNION ALL
-   SELECT * FROM `202304_divvy_tripdata`
-   UNION ALL
-   SELECT * FROM `202305_divvy_tripdata`
-   UNION ALL
-   SELECT * FROM `202306_divvy_tripdata`
-   UNION ALL
-   SELECT * FROM `202307_divvy_tripdata`
-   UNION ALL
-   SELECT * FROM `202308_divvy_tripdata`
-   UNION ALL
-   SELECT * FROM `202309_divvy_tripdata`
-   UNION ALL
-   SELECT * FROM `202310_divvy_tripdata`
-   UNION ALL
-   SELECT * FROM `202311_divvy_tripdata`
-   UNION ALL
-   SELECT * FROM `202312_divvy_tripdata`
-   UNION ALL
-);
-```
+> For this case, i will use the `UNION ALL` statement for combining all 12 `2021_divvy_tripdata` tables into a single one called `2021_divvy_tripdata` representing 1 year of data
 
 6. After that, i deleted all 12 datasets, since they are no longer necessary:
 ```SQL
-DROP TABLES 202301_divvy_tripdata, 202302_divvy_tripdata, 202303_divvy_tripdata, 202304_divvy_tripdata, 202305_divvy_tripdata, 202306_divvy_tripdata, 202307_divvy_tripdata, 202308_divvy_tripdata, 202309_divvy_tripdata, 202310_divvy_tripdata, 202311_divvy_tripdata, 202312_divvy_tripdata;
+DROP TABLES 202101_divvy_tripdata, 202102_divvy_tripdata, 202103_divvy_tripdata, 202104_divvy_tripdata, 202105_divvy_tripdata, 202106_divvy_tripdata, 202107_divvy_tripdata, 202108_divvy_tripdata, 202109_divvy_tripdata, 202110_divvy_tripdata, 202111_divvy_tripdata, 202112_divvy_tripdata;
 ```
 
 ## Process
@@ -228,7 +202,7 @@ Again, no inconsistent values
     ```SQL
     SELECT start_station_name FROM 2023_divvy_tripdata where start_station_name IS NULL;
     ```
-* But when i put the filter `WHERE start_station_name = ""`, there is an empty station with empty space in the `start_station_name`. This query show that there is 437,747 rows with this empty values!
+* But when i put the filter `WHERE start_station_name = ""`, there is an empty station with empty space in the `start_station_name`. This query show that there is 437,747 rows with this empty values, in other words with empty starting stations:
 
     ```SQL
     SELECT COUNT(*) FROM 2023_divvy_tripdata WHERE start_station_name = "";
@@ -242,6 +216,7 @@ Again, no inconsistent values
     ```
 
 * For the rest of the 400,000  rows missing, one possible solution is to check for other columns with full and clean data, like `start_lat`, `end_lat`, `start_lng` and `end_lng`.
+* For the 437,734 trips with empty starting stations, i need to discover something in common with any other row. I will 
     ```SQL
     
     ```
@@ -276,7 +251,31 @@ Again, no inconsistent values
 After data combining, exploring and cleaning all 12 months of `.csv` files, the process can get a step foward: the Analyse phase.
 
 ## Analyse
----
+My goal now is to identify relationships within the data, so i can accurately answer the analysis questions, which is:
+- How annual members and casual cyclist uses Cyclistic bicycles differently?
+- Why does casual passengers would want to get Cyclistic annual plan?
+- How does the Cyclistic can use digital media to influence casual passengers to become members?
+
+For this 3 questions, i will de using the programming language R, that will help me get insights from graphic visualizations
+
+### _How annual members and casual cyclists uses Cyclistic bicycles differently?_
+
+To answer these qustion...
+
+### _Why does casual passengers would want to get Cyclistic annual plan?_
+
+To answer these qustion...
+
+### _How does the Cyclistic can use digital media to influence casual passengers to become members?_
+
+To answer these qustion...
 
 ## Share
----
+
+Any data Visualization using Tableau hehuehauhauhauhau
+
+## Conclusions
+
+- etc
+- etc
+- etc
