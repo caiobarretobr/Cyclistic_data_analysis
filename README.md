@@ -44,7 +44,7 @@ What is the Data Source?
 How's my data organized?
 : I will import all `.csv` files in a database from MySql using MySQl Command Line in the Server-side. Each `.csv` will be represented by one table. After that, all tables will turned into one table, the main Dataset. From this dataset, the `Process` Analysing step can be continued.
 
-##### Hands-on
+##### Step 1: Hands-on
 1. Connect the terminal to the SQL-server:
 ```SQL
 mysql -u UserName -p
