@@ -91,16 +91,12 @@ After data exploring, i created a new table with the cleaned data based on the a
 ### Phase 4: Analyse - Analysing, Insights, Trends
 > SQL query [here](SQL/data_analysis.sql)         
 
-Depois de preparar os dados, onde foi feito a organização de dados, e depois da fase processar, onde foi feito uma exploração e limpeza dos dados, até agora, o conjunto de dados está organizado dessa forma:
+Depois de preparar os dados, onde foi feito a organização de dados, e depois da fase processar, onde foi feito uma exploração e limpeza dos dados, até agora, essas são as informações do conjunto de dados:
 
-```mermaid
-graph LR
-A[Square Rect] -- Link text --> B((Circle))
-A --> C(Round Rect)
-B --> D{Rhombus}
-C --> D
-```
-
+|       | ride_id | rideable_type | started_at | ended_at | trip_duration | day_of_week | month_ |
+|-|-|-|-|-|-|-|-|
+Datatype| char(16) Primay key | text         | datetime            | datetime            | datetime | varchar(3) | varchar(3) |
+Example | 0000CB9B87AECF12    | classic_bike | 2021-01-06 20:12:20 | 2021-01-06 20:12:20 | 00:06:11 | wed        | jan        |
 ### Phase 5: Share - Data Visualizations 
 ---
 ### Phase 6: Act: Final conclusions
