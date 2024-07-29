@@ -1,6 +1,5 @@
 # Case study: How a bike sharing make a fast success being possible?
 Hello! My name is Caio, i'm a beginner Data Analyst and this case study was made to show my data analysis hard and soft skills and it was based on the [Google data analytics certificate](https://www.coursera.org/learn/google-data-analytics-capstone) case study, so i applied all the knowledge i acquired in the whole course.
-> Disclaimer: this case study was made using all the knowledge i have, but i used some other repositories as inspirations, like [this](https://github.com/SomiaNasir/Google-Data-Analytics-Capstone-Cyclistic-Case-Study), by SomiaNasir, in GitHub
 
 ## Tools used
 - MySql
@@ -56,32 +55,52 @@ The goal is to explore 1 year of the Cyclistic bike riding dataset, in which the
 _**How's the data organized?**_
 > SQL query [here](SQL/data_organizing.sql).
 
-The tables are stored in `.csv` files, and it wil be imported to a MySQL database using MySQL-server command line. Each `.csv` will be represented by one table. After that, all tables will turn into one table, the main Dataset. With this dataset, representing all the 2021 cyclistic data, the `Process` step can be continued.
+The tables are stored in `.csv` files, and it wil be imported to a MySQL database using MySQL-server command line. Each `.csv` will be represented by one table. After that, all tables will combined into only one table, the main Dataset. With this dataset, representing the 2021 cyclistic data, the `Process` step can be continued.
 
 ### Phase 3: Process - Exploring, cleaning and manipulation
-
-The `Process` function is to cleaning the data, ensuring data integrity, a data with no bias, errors, by exploring the data particulars and cleaning any inconsistency for a more efficient working.
 
 ### Data exploring
 > SQL query [here](SQL/data_exploring.sql).
 
-By exploring the data, we found some inconsistencies:
-* 384 rows with wrong values in "ride_id"
-* 11,151 trips during more than a day
-* 58,325 trips during less than a minute
-* 690,805 empty rows in "start_station_name" column
-* 739,167 empty rows in both "end_station_name" and "end_station_id"
-* 690,802 empty rows in "start_station_id" column
+For familiarizing myself with the data, there are some characteristics about the data:
+
+1. The dataset has rows
+2. There is three types of bicycles: electric, classic and docked bikes
+3. Number of trips in each bike:
+![img](https://i.imgur.com/ZjpMdJX.png)
+4. Trips during longer than a day: 1,041 rows
+5. Trips during shorter than a minute: 59,369 rows
+6. Number of trips from both casual customers and annual members:
+![img](https://i.imgur.com/P87tWlm.png)
+7. Also, there is more than 1 million rows with empty values in the columns `start_station_name`, `start_station_id`, `end_station_name`, `end_station_id`:
+![img](https://i.imgur.com/fSwXmz7.png)
+
 
 ### Data cleaning
 > SQL query [here](SQL/data_cleaning.sql).
 
-**Cleaning tasks**
-* Remove rows with empty stations
-* Remove rows called "351"
----
+After data exploring, i created a new table with the cleaned data based on the already existing table, in which all the tasks involved was:
+* Adding a column with the duration of each trips in minutes
+* Adding a new column with each trip's day of week (Monday = 1, Tueday = 2, Wednesday = 3, etc)
+* Adding a new column containing each trip's month
+* Deleting trips during longer than a day and less than a minute
+* The new table has 4,527,643 rows, totalizing 1,067,420 rows deleted:
+
+![img](https://i.imgur.com/kvyDZdB.png)
+                                             
 ### Phase 4: Analyse - Analysing, Insights, Trends
----
+> SQL query [here](SQL/data_analysis.sql)         
+
+Depois de preparar os dados, onde foi feito a organização de dados, e depois da fase processar, onde foi feito uma exploração e limpeza dos dados, até agora, o conjunto de dados está organizado dessa forma:
+
+```mermaid
+graph LR
+A[Square Rect] -- Link text --> B((Circle))
+A --> C(Round Rect)
+B --> D{Rhombus}
+C --> D
+```
+
 ### Phase 5: Share - Data Visualizations 
 ---
 ### Phase 6: Act: Final conclusions
