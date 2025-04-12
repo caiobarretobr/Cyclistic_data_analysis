@@ -48,21 +48,13 @@ The goal is to explore 1 year of the Cyclistic bike riding dataset, in which the
 After creating the a SQL server and the schema in MySQL Workbench, the tables stored in `.csv` files wil be imported to it. Each `.csv` will be represented by one table. After that, all tables will combined into only one table, the main Dataset. With this dataset, representing the 2021 cyclistic data, the `Process` step can be continued.
 
 As the MySQL Workbench server only allow one path for importing files (/var/lib/mysql-files/), i will copying all ".csv" files for this path, at the terminal:
-$ sudo cp 202101-divvy-tripdata.csv /var/lib/mysql-files/
-$ sudo cp 202102-divvy-tripdata.csv /var/lib/mysql-files/
-$ sudo cp 202103-divvy-tripdata.csv /var/lib/mysql-files/
-$ sudo cp 202104-divvy-tripdata.csv /var/lib/mysql-files/
-$ sudo cp 202105-divvy-tripdata.csv /var/lib/mysql-files/
-$ sudo cp 202106-divvy-tripdata.csv /var/lib/mysql-files/
-$ sudo cp 202107-divvy-tripdata.csv /var/lib/mysql-files/
-$ sudo cp 202108-divvy-tripdata.csv /var/lib/mysql-files/
-$ sudo cp 202109-divvy-tripdata.csv /var/lib/mysql-files/
-$ sudo cp 202110-divvy-tripdata.csv /var/lib/mysql-files/
-$ sudo cp 202111-divvy-tripdata.csv /var/lib/mysql-files/
-$ sudo cp 202112-divvy-tripdata.csv /var/lib/mysql-files/
-$ sudo ls /var/lib/mysql-files/
 
-Finaly, all the files can be imported to the respective tables (Query [here](https://github.com/caiobarretobr/Cyclistic_data_analysis/blob/main/1.data_organizing.sql))
+```bash
+$ sudo cp 202101-divvy-tripdata.csv /var/lib/mysql-files/ & sudo cp AllOtherDatasets
+$ sudo ls /var/lib/mysql-files/
+```
+
+Finaly, all the files can be imported to the respective tables (SQL query [here](https://github.com/caiobarretobr/Cyclistic_data_analysis/blob/main/1.data_organizing.sql))
 
 ### Phase 3: Process
 
