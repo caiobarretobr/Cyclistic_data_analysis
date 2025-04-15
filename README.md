@@ -3,7 +3,7 @@
 ## Tools used
 - Bash CLI
 - MySQL server
-- Python (Panda library)
+- Python (Pandas library)
 - VS code
 - Tableau
 
