@@ -1,12 +1,5 @@
 # Case study: How a bike sharing make a fast success being possible?
 
-## Tools used
-- Bash CLI
-- MySQL server
-- Python (Pandas library)
-- VS code
-- Tableau
-
 ## Fictional scenario
 In 2016, the fictitious company called Cyclistic has launched a succeed offer about bike sharing. Since then, the program increased to a 5,800 bicycles fleet with geografic traffic and almost 700 stations at Chicago. 
 
@@ -42,6 +35,7 @@ There are three questions that will guide the marketing program future:
 ### Phase 2: Prepare
 #### Data source
 > SQL query [here](https://github.com/caiobarretobr/Cyclistic_data_analysis/blob/main/1.data_organizing.sql)
+
 The goal is to explore 1 year of the Cyclistic bike riding dataset, in which the data source is stored in a [AWS S3 Bucket](https://divvy-tripdata.s3.amazonaws.com/index.html), provided by Motivate International Inc, under [This](https://divvybikes.com/data-license-agreement) License. The data containing in it is stored in `.csv` files.
 After connecting to a SQL server and creating a database, the tables stored in `.csv` files wil be imported to it, becoming 12 tables, then combined into only one table.
 
@@ -52,52 +46,63 @@ After connecting to a SQL server and creating a database, the tables stored in `
 
 Exploring the facts about the Data:
 
-1. Number of rows: 5,595,063
+1. Number of rows: 5,595,043
 2. There is three types of bicycles: electric, classic and docked bikes
-3. Number of trips in each bike:
-![img](https://i.imgur.com/ZjpMdJX.png)
-4. Trips during longer than a day: 3,744 rows
-5. Trips during shorter than a minute: 85,233 rows
-6. Number of trips from both casual customers and annual members:
-![img](https://i.imgur.com/P87tWlm.png)
-7. Also, there is more than 1 million rows with empty values in the columns `start_station_name`, `start_station_id`, `end_station_name`, `end_station_id`:
-![img](https://i.imgur.com/fSwXmz7.png)
+3. Trips for each bike type: 
+- 3,2 million trips in `classic bikes`
+- 2 million trips in `electric bikes`
+- 300k trips in `docked bikes`
+
+4. 3k trips during longer than a day
+5. 85k trips during shorter than a minute
+6. Number of trips for each user type:
+- 3 million of trips by member riders
+- 2,5 million of trips by casual riders
+
+7. More than 1 million rows missing values in at least one column
+8. Almost 400 rows with 
 
 #### Data cleaning
 > SQL query [here](https://github.com/caiobarretobr/Cyclistic_data_analysis/blob/main/3.data_cleaning.sql).
 
-After data exploring, i created a new table with the cleaned data based on the already existing table, in which all the tasks involved was:
+After data exploring, i created a new table with cleaned data based on the existing table, in which all the tasks involved was:
 * Adding a column with the duration of each trips in minutes
 * Adding a new column with each trip's day of week (Monday = 1, Tueday = 2, Wednesday = 3, etc)
 * Adding a new column containing each trip's month
 * Deleting trips during longer than a day and less than a minute
-* The new table has 4,527,658 rows, totalizing 1,067,405 rows deleted
+* The new table has 4,5 million rows, totalizing 1 million rows deleted
                                              
 ### Phase 4: Analyse
 > SQL query [here](https://github.com/caiobarretobr/Cyclistic_data_analysis/blob/main/4.data_analysis.sql)         
 
-After done all the analysis calculations of the dataset, there is all the insights we got based on the queries:
-* 
-* 
+Here's some helpful facts about Member customers and Casual riders, which will bring the valious insights and data visualizations:
 
-maximo de insights
-tentar diminuir o tamanho do código
-começar a etapa da visualização
+* Most of riders both for casual and member take trips for leisure, at while 30% uses bike to dislocating for work
+* Both users are more propense to ride longer at weekends
+* Casual customers rides longer than member customers along the week
+* The average number of trips for member customers are bigger than casual customers along the week
+    - At weekends, the number of trips for casual customers are more (`Friday 287k` | `Sunday, 399k` | `Saturday 460k`)
+    - Member customers has more trips at Tuesday and Wednesday (`Tuesday 382k` | `Wednesday 391k`, indicating that the chances of member customers to use bikes for work are more than casual customers)
+* Member customers along the year:
+    - Months of less trips `January 68k`  `February 33k` | Months of more trips `August 327k` `September 323k`
+* Casual customers along the year:
+    - Months of less trips `January 14k` `February 8k` | Months of more tripsMore trips `Jule 364k` `August 338k`
+* Both clients take more trips in the months:
+* Both clients usually take more trips using CLassic bikes, while Docked bike is less used
 
-Calculations 
-- average trip_duration OK
-- average day_of_week OK
-- max trip_duration OK
-- average trip duration from member and casual customers OK
-- average trip duration in each day of the week from member and casual customers Ok
-- number of trips from each user from each day of the week OK
-- all these calculations for each month
+### Phase 5: Data visualizations
+> Python code [here](Github.com/python.py)
 
-### Phase 5: Share
-Now, using the Tableau, i used all the insights from the calculations, and making charts for getting trends, more insights and final conclusions. These are the data visualizations i did by the 2021 cyclistic dataset:
+By the Analysis Insights and Statistics, there is the Visualizations made with Python:
 
 
+- 
 ### Phase 6: Act
-    1. Como os membros anuais e os ciclistas casuais usam as bicicletas da Cyclistic de forma diferente?    
-    2. Por que os passageiros casuais iriam querer adquirir planos anuais da Cyclistic?
-    3. Como a Cyclistic pode usar a mídia digital para influenciar os passageiros casuais a se tornarem membros?
+Concluding this case study, the possible strategies aiming for attract Casual users to pay annual plans are the following:
+
+* 30 days trial
+* Decreasing the number of docked bike making, and invest more in classic and electric bikes
+* Create personalized plans with different prices, thinking in the casual user needs (Probably leisure than work, accordingly the data insights already seen) for an annual plan, adding some restrictions for cheaper plans and more benefits for full plans,consequently (Ex: copper, silver and golden plans)
+* Create an app or site that monitor which stations are lotting which are not, preview the peak time in each station
+* A newsletter about Chicago Stations and Region
+* Ask for refund whenever the user want
